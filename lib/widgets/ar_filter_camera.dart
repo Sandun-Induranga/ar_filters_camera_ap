@@ -1,5 +1,5 @@
+import 'package:deepar_flutter/deepar_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:camera_deep_ar/camera_deep_ar.dart';
 
 class ARFilterCamera extends StatefulWidget {
   const ARFilterCamera({super.key});
@@ -9,15 +9,28 @@ class ARFilterCamera extends StatefulWidget {
 }
 
 class _ARFilterCameraState extends State<ARFilterCamera> {
-  CameraDeepArController? _cameraDeepArController;
+  final  DeepArController _controller = DeepArController();
+
+  @override
+  void initState() {
+    _controller.initialize(
+        androidLicenseKey:"---android key---",
+        iosLicenseKey:"---iOS key---",
+        resolution: Resolution.high);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          DeepArPreview(
-            _cameraDeepArController!,
+          _controller.isInitialized
+              ? DeepArPreview(
+            _controller,
+                )
+              : const Center(
+            child: CircularProgressIndicator(),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -29,9 +42,6 @@ class _ARFilterCameraState extends State<ARFilterCamera> {
                   // Capture Button
                   ElevatedButton(
                     onPressed: () {
-                      if (_cameraDeepArController != null) {
-                        _cameraDeepArController!.snapPhoto();
-                      }
                     },
                     child: Icon(Icons.camera),
                   ),
