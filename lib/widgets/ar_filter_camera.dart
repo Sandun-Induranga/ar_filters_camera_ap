@@ -1,3 +1,4 @@
+import 'package:ar_filter_camera_app/keys.dart';
 import 'package:deepar_flutter/deepar_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,8 @@ class _ARFilterCameraState extends State<ARFilterCamera> {
   @override
   void initState() {
     _controller.initialize(
-        androidLicenseKey:"---android key---",
-        iosLicenseKey:"---iOS key---",
+        androidLicenseKey: androidKey,
+        iosLicenseKey: iosKey,
         resolution: Resolution.high);
     super.initState();
   }
@@ -39,7 +40,6 @@ class _ARFilterCameraState extends State<ARFilterCamera> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Capture Button
                   ElevatedButton(
                     onPressed: () {
                     },
