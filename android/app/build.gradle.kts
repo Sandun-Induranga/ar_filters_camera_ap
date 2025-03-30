@@ -6,7 +6,8 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ar_filter_camera_app"
+//    namespace = "com.example.ar_filter_camera_app"
+    namespace = "com.deepar.flutter"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
